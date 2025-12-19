@@ -110,12 +110,14 @@ def test_mlflow_run_name_setting(tmp_path):
 
     # run_name overrides tags[MLFLOW_RUN_NAME]
     logger = MLFlowLogger("test", run_name="run-name-1", tags={MLFLOW_RUN_NAME: "run-name-2"}, save_dir=str(tmp_path))
+    logger._mlflow_client = client = Mock()
     logger = mock_mlflow_run_creation(logger, experiment_id="exp-id")
     _ = logger.experiment
     client.create_run.assert_called_with(experiment_id="exp-id", tags=tags)
 
     # default run_name (= None) does not append new tag
     logger = MLFlowLogger("test", save_dir=str(tmp_path))
+    logger._mlflow_client = client = Mock()
     logger = mock_mlflow_run_creation(logger, experiment_id="exp-id")
     _ = logger.experiment
     default_tags = resolve_tags(None)
