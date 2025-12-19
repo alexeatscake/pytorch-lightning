@@ -77,6 +77,7 @@ def restore_env_variables():
         "MASTER_PORT",
         "PL_GLOBAL_SEED",
         "PL_SEED_WORKERS",
+        "MLFLOW_TRACKING_URI",  # set by MLFlow
         "WANDB_MODE",
         "WANDB_REQUIRE_SERVICE",
         "WANDB_SERVICE",
