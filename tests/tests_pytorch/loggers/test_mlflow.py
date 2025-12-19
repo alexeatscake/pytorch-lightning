@@ -90,6 +90,7 @@ def test_mlflow_logger_exists(mlflow_mock, tmp_path):
     assert logger3.run_id == "run-id-3"
 
 
+@pytest.mark.filterwarnings("default:.*The filesystem tracking backend.*:FutureWarning")
 def test_mlflow_run_name_setting(tmp_path):
     """Test that the run_name argument makes the MLFLOW_RUN_NAME tag."""
     if not _MLFLOW_AVAILABLE:
@@ -174,6 +175,7 @@ def test_mlflow_log_dir(mlflow_mock, tmp_path):
     assert trainer.log_dir == logger.save_dir
 
 
+@pytest.mark.filterwarnings("default:.*The filesystem tracking backend.*:FutureWarning")
 def test_mlflow_logger_dirs_creation(tmp_path):
     """Test that the logger creates the folders and files in the right place."""
     if not _MLFLOW_AVAILABLE:
